@@ -74,7 +74,7 @@ public interface RetrofitInterface {
     //studyhome
     @FormUrlEncoded
     @GET("study/management")
-    Call<ModelStudyListAll> getStudyList(@Header("Authorization") String auth);
+    Call<ModelStudyListAll> getData();
 
     //home
     @GET("home")
@@ -84,12 +84,17 @@ public interface RetrofitInterface {
     @POST("user/login")
     Call<ModelAuth> postUserLogin(@Body Model_UserLogIn modelUserLogIn);
 
+    public interface initMyApi {
+        @POST("/user/login")
+        Call<LoginResponse> getLoginResponse(@Body LoginRequest loginRequest);
+    }
+
     //join
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
     @POST("user/check")
     Call<Model_ValidatePhone> getValidatePhone(@Body Model_ValidatePhone userPhoneValidate);
 
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
     @POST("user/join")
     Call<Model_UserJoin> postUserJoin(@Body Model_UserJoin userJoin);
 
@@ -102,6 +107,5 @@ public interface RetrofitInterface {
 
 //    @GET("/home/profile/{id}")
 //    Call<ModelProfile> getUserProfile(@Path("id") String id);
-
-
 }
+
